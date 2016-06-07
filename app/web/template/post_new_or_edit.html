@@ -1,0 +1,163 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/css/mditor-0.1.4.min.css">
+
+    <title>发表文章 - 我有绣春刀</title>
+{% endblock %}
+
+{% block main %}
+
+    <!--{% if post is defined %}-->
+        <!--<input id="post-source-zh-title" class="post-source-title"  type="text" placeholder="中文标题" value="{{post.zh_title}}" />-->
+        <!--<input id="post-source-en-title" class="post-source-title"  type="text" placeholder="英文标题" value="{{post.en_title}}" />-->
+        <!--<textarea id="post-source-content"  name="editor" class="post-source-content" outerText="{{post.md_content}}" ></textarea>-->
+    <!--{% else %}-->
+        <input id="post-source-zh-title" class="post-source-title"  type="text" placeholder="中文标题" />
+        <input id="post-source-en-title" class="post-source-title"  type="text" placeholder="英文标题" />
+        <div class="post-tag-container">
+            <div id="post-tag-item-container" style="display:none;" class="post-tag-inline">
+                <!--
+                <div class="post-tag-editor-edit-item">
+                    <span class="post-tag-editor-tag-name">iOS</span>
+                    <span class="post-tag-editor-remove-button"></span>
+                </div>
+                -->
+            </div>
+
+            <input id="post-tag-editor-input" type="text" placeholder="设置标签" />
+
+        </div>
+        <textarea id="post-source-content"  name="editor" class="post-source-content"></textarea>
+    <!--{% endif %}-->
+
+    <div class="post-publish">
+        <input id="is-top" type="checkbox">
+        <label for="is-top" class="post-is-top">是否置顶</label>
+        <button id="submit" class="post-publish-button">发布</button>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="/lib/jquery-2.2.4.min.js"></script>
+    <script src="/lib/mditor-0.1.4.min.js"></script>
+
+    <script>
+
+        <!--var post = {{post}};-->
+        <!--console.log(post);-->
+
+        var mditor = new Mditor("#post-source-content",{
+            height:600,
+            fixedHeight:true
+        });
+
+        /** 生成标签模板 */
+        function create_tag_item(tag_name){
+            var tag_item_html = '<div class=\"post-tag-editor-edit-item\"><span class=\"post-tag-editor-tag-name\">'
+                + tag_name + '</span><span class=\"post-tag-editor-remove-button\"></span></div>';
+            return tag_item_html;
+        }
+
+        (function() {
+
+            /** 监听标签输入框 */
+            $("#post-tag-editor-input").on("change paste keyup", function() {
+                var tag_name = $(this).val();
+                if(tag_name.length == 1 && tag_name == ' '){
+                    $(this).val('');
+                    return;
+                }
+
+                if (tag_name.charAt(tag_name.length - 1) == ' '){
+                    $("#post-tag-item-container").append(create_tag_item(tag_name.trim()));
+                    $( "#post-tag-item-container").show();
+                    $(this).val('');
+                }
+            });
+
+            $(".post-tag-container").click(function(){
+                $("#post-tag-editor-input").focus();
+            });
+
+            /** 标签删除按钮绑定点击事件 */
+            $("body").on("click", ".post-tag-editor-remove-button", function(){
+                $(this).parent().remove();
+                if ($("#post-tag-item-container .post-tag-editor-edit-item").length == 0){
+                    $("#post-tag-item-container").hide();
+                }
+            });
+
+            // 保存文章
+            $("#submit").click(function(){
+
+                var zh_title = $('#post-source-zh-title').val();
+                var en_title = $('#post-source-en-title').val();
+                var md_content = $('#post-source-content').val();
+                var html_content = $('div.markdown-body').html();
+                var tags = $(".post-tag-editor-tag-name").map(function () { return $(this).text(); }).get();
+                tags = jQuery.unique( tags );
+                console.log(tags);
+
+                if (!zh_title.length){
+                    alert ("请输入中文标题");
+                    return;
+                }
+
+                if (!en_title.length){
+                    alert ("请输入英文标题");
+                    return;
+                }
+
+                if (tags.length == 0){
+                    alert("请设置标签");
+                    return;
+                } else if (tags.length > 5){
+                    alert("最多设置5个标签");
+                    return;
+                }
+
+                if (md_content.indexOf('<!-- more -->') == -1){
+                    alert ("Markdown区域请输入<!-- more -->分隔符");
+                    return;
+                }
+
+                if (html_content == undefined){
+                    alert ("请点击编辑器中的分割栏按钮预览文章");
+                    return;
+                }
+
+                <!--return;-->
+
+                $.ajax({
+                  method: 'POST',
+                  url: '/post/new',
+                  data: JSON.stringify({
+                     'post_id': 0,
+                     'zh_title': zh_title,
+                     'en_title': en_title,
+                     'tags': tags,
+                     'md_content': md_content,
+                     'html_content': html_content,
+                     'is_top': $('#is-top').is(":checked") ? 1 : 0
+                  }),
+                  dataType: 'json',
+                  contentType: "application/json; charset=utf-8",
+                  error: function() {
+                  },
+                  success: function(data) {
+                      if(data['code'] == 1){
+                          window.location.href = '/post/' + data['items']['title'];
+                      } else if (data['code'] == 0){
+                          alert(data['message']);
+                      }
+                  }
+               });
+            });
+
+        })();
+    </script>
+{% endblock %}
+

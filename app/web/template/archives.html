@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <title>归档 - 我有绣春刀</title>
+{% endblock %}
+
+{% block main %}
+
+    <div class="archive-list">
+        {% for archive_group in archive_group_list %}
+            <div>
+                <div class="archive-heading">
+                    <span>{{ archive_group['year'] }}</span>
+                </div>
+
+                {% if loop.index == 1 %}
+                    <div class="archive-body">
+                        {% for post in archive_group['post_list'] %}
+                            <a href="/post/{{post.en_title}}" target="_blank" class="archive-item">
+                                {{ post.time | post_datetime }}&nbsp;&nbsp;&nbsp;&nbsp;{{ post.zh_title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="archive-body" style="display:none">
+                        {% for post in archive_group['post_list'] %}
+                            <a href="/post/{{post.en_title}}" target="_blank" class="archive-item">
+                                {{ post.time | post_datetime }}&nbsp;&nbsp;&nbsp;&nbsp;{{ post.zh_title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="/lib/jquery-2.2.4.min.js"></script>
+
+    <script>
+        (function() {
+
+            //
+            $(".archive-heading").click(function(){
+                $(this).next().toggle(300);
+                <!--$(this).parent().toggleClass('archive-group');-->
+            });
+
+        })();
+    </script>
+{% endblock %}

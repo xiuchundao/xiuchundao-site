@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <title>上传图片 - 我有绣春刀</title>
+{% endblock %}
+
+{% block main %}
+    <div class="login-box">
+        <div id="upload-button" class="login-button" style="display:block">选择文件上传</div>
+        <form id="image-form" action="/attach/upload" method="POST" enctype="multipart/form-data" style="display:none" >
+            <input id="image-input" type="file" name="file" accept="image/*" />
+        </form>
+    </div>
+
+    <script src="/lib/jquery-2.2.4.min.js"></script>
+
+    <script>
+        (function() {
+            $("#upload-button").click(function(){
+                $("#image-input").trigger('click');
+            });
+
+            $("#image-input").change(function (){
+                $(this).parent().submit();
+            });
+        })();
+    </script>
+{% endblock %}
+

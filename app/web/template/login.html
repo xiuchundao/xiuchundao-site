@@ -1,0 +1,71 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <title>登录 - 我有绣春刀</title>
+{% endblock %}
+
+{% block main %}
+    <div class="login-box">
+        <input id="username" class="login-input"  type="text" placeholder="用户名" />
+        <input id="password" class="login-input"  type="password" placeholder="密码" />
+        <div id="login" class="login-button">登&nbsp;录</div>
+    </div>
+
+
+        <!--<a href="/logout" class="post-publish-button">退出</a>-->
+
+    <script src="/lib/jquery-2.2.4.min.js"></script>
+
+    <script>
+
+        /** 获取查询参数 */
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        (function() {
+            $("#login").click(function(){
+                var username = $('#username').val();
+                var password = $('#password').val();
+
+                if(username.length != username.trim().length){
+                    alert();
+                }
+
+
+                $.ajax({
+                  method: 'POST',
+                  url: '/login',
+                  data: JSON.stringify({
+                     'username': username,
+                     'password': password
+                  }),
+                  dataType: 'json',
+                  contentType: "application/json; charset=utf-8",
+                  error: function() {
+                  },
+                  success: function(data) {
+                      if(data['code'] == 1){
+                          var next = getParameterByName('next');
+                          if (next){
+                              window.location.href = getParameterByName('next');
+                          } else {
+                              window.location.href = '/';
+                          }
+                      } else if (data['code'] == 0){
+                          alert(data['message']);
+                      }
+                  }
+               });
+            });
+
+        })();
+    </script>
+{% endblock %}
+

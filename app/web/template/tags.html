@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <title>标签 - 我有绣春刀</title>
+{% endblock %}
+
+{% block main %}
+    <div class="tagcloud">
+        {% for tag in tags %}
+            <a href="/tag/{{tag.tag_name}}">{{tag.tag_name}}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
+

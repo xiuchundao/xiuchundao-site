@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="我有绣春刀的个人博客">
+
+    <link rel="stylesheet" href="/css/site.css">
+
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/"><span>我有绣春刀的博客</span></a></h1>
+
+            <nav class="navbar sliding-panel-content">
+                <ul>
+
+                    <li><a href="/" title="首页">首页</a></li>
+                    <li><a href="/tags" title="标签">标签</a></li>
+                    <li><a href="/archives" title="归档">归档</a></li>
+                    <!--<li><a href="/search" title="搜索">搜索</a></li>-->
+                    <li><a href="/about" title="关于我">关于我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <div class="container">
+           {% block main %}{% endblock %}
+        </div>
+
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <ul class="contact">
+                <li><a href="mailto:xiuchundao@hotmail.com" title="Email"><i class="icon icon-email">
+                    <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="16px" height="12px"
+                         viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <title>Email</title>
+                        <desc>Email</desc>
+                        <defs></defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                           sketch:type="MSPage">
+                            <g id="email5" sketch:type="MSLayerGroup" fill="#030104">
+                                <g id="Group" sketch:type="MSShapeGroup">
+                                    <path d="M8,8 L6.02057143,6.26742857 L0.361142857,11.1188571 C0.566857143,11.3097143 0.844571429,11.4285714 1.15085714,11.4285714 L14.8491429,11.4285714 C15.1542857,11.4285714 15.4308571,11.3097143 15.6354286,11.1188571 L9.97942857,6.26742857 L8,8 L8,8 Z"
+                                          id="Shape"></path>
+                                    <path d="M15.6388571,0.309714286 C15.4331429,0.117714286 15.1565714,0 14.8491429,0 L1.15085714,0 C0.845714286,0 0.569142857,0.118857143 0.363428571,0.312 L8,6.85714286 L15.6388571,0.309714286 L15.6388571,0.309714286 Z"
+                                          id="Shape"></path>
+                                    <path d="M0,1.00342857 L0,10.4982857 L5.52342857,5.80457143 L0,1.00342857 Z"
+                                          id="Shape"></path>
+                                    <path d="M10.4765714,5.80457143 L16,10.4982857 L16,1 L10.4765714,5.80457143 Z"
+                                          id="Shape"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </i></a></li>
+                <li><a href="https://github.com/xiuchundao" target="_blank" title="GitHub"><i class="icon icon-github">
+                    <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="16px" height="16px"
+                         viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <title>GitHub</title>
+                        <desc>GitHub</desc>
+                        <defs></defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                           sketch:type="MSPage">
+                            <path d="M7.76,0 C3.475,0 0,3.474 0,7.761 C0,11.189 2.223,14.098 5.307,15.124 C5.695,15.195 5.837,14.956 5.837,14.75 C5.837,14.566 5.83,14.078 5.827,13.43 C3.668,13.899 3.213,12.39 3.213,12.39 C2.86,11.494 2.351,11.255 2.351,11.255 C1.646,10.774 2.404,10.783 2.404,10.783 C3.183,10.838 3.593,11.583 3.593,11.583 C4.285,12.769 5.409,12.426 5.851,12.228 C5.922,11.726 6.122,11.385 6.344,11.191 C4.621,10.994 2.81,10.329 2.81,7.355 C2.81,6.508 3.112,5.815 3.609,5.273 C3.529,5.076 3.262,4.287 3.685,3.219 C3.685,3.219 4.337,3.01 5.819,4.015 C6.438,3.842 7.101,3.756 7.761,3.753 C8.42,3.756 9.084,3.842 9.704,4.014 C11.186,3.01 11.836,3.218 11.836,3.218 C12.259,4.286 11.993,5.075 11.913,5.272 C12.41,5.814 12.711,6.507 12.711,7.354 C12.711,10.335 10.897,10.991 9.168,11.183 C9.447,11.423 9.695,11.896 9.695,12.62 C9.695,13.657 9.685,14.494 9.685,14.749 C9.685,14.957 9.825,15.198 10.219,15.122 C13.3,14.094 15.521,11.187 15.521,7.76 C15.521,3.475 12.046,0 7.76,0 L7.76,0 Z"
+                                  id="Shape" fill="#000000" sketch:type="MSShapeGroup"></path>
+                        </g>
+                    </svg>
+                </i></a></li>
+                <li><a href="https://www.zhihu.com/people/jiayia4" target="_blank" title="知乎"><i class="icon icon-zhihu">
+                    <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="16px" height="16px"
+                         viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <title>Zhihu</title>
+                        <desc>Zhihu</desc>
+                        <defs></defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                           sketch:type="MSPage">
+                            <path d="M8.59692308,1.85969231 L8.59692308,12.8258462 L9.77846154,12.8258462 L10.1550769,14.1464615 C10.1550769,14.1464615 11.9667692,12.8258462 12.2843077,12.8258462 L14.7803077,12.8258462 L14.7803077,1.85969231 L8.59692308,1.85969231 L8.59692308,1.85969231 Z M13.5236923,11.6356923 L12.1156923,11.6356923 L10.688,12.5501538 L10.4541538,11.6393846 L9.85107692,11.6369231 L9.85107692,3.04861538 L13.5236923,3.04861538 L13.5236923,11.6356923 L13.5236923,11.6356923 Z M7.936,8.06646154 C7.936,8.06646154 7.92984615,6.87753846 7.552,6.87753846 L4.91446154,6.87753846 C5.00061538,5.51138462 5.02523077,4.27815385 5.02523077,3.17538462 L7.60615385,3.17538462 C7.60615385,3.17538462 7.70461538,2.03815385 7.17292308,2.05169231 L2.71138462,2.05169231 C2.88738462,1.38707692 3.10769231,0.706461538 3.37230769,0 C3.37230769,0 2.15876923,0 1.74523077,1.088 C1.57292308,1.53723077 1.08061538,3.26276923 0.198153846,5.02646154 C0.496,4.99446154 1.47815385,4.96738462 2.05661538,3.90646154 C2.16246154,3.61107692 2.18338462,3.57046154 2.31507692,3.17415385 L3.76984615,3.17415385 C3.76984615,3.70338462 3.77723077,4.43446154 3.73292308,5.31569231 C3.73292308,6.15507692 3.70830769,6.54646154 3.68369231,6.87876923 L1.04984615,6.87876923 C0.456615385,6.87876923 0.264615385,8.06769231 0.264615385,8.06769231 L3.56923077,8.06769231 C3.34769231,10.5809231 2.15876923,12.6756923 0,14.3495385 C0.352,14.7015385 2.10953846,14.3372308 2.57230769,13.8732308 C2.57230769,13.8732308 3.72923077,12.8209231 4.36430769,10.3827692 C5.20123077,11.3513846 5.90646154,12.2116923 6.48123077,12.96 C6.74461538,13.3132308 7.07569231,13.6861538 7.07569231,13.6861538 C7.07569231,13.6861538 7.48184615,12.2990769 7.02153846,11.6393846 C6.64,11.1901538 5.59753846,9.96553846 5.15692308,9.52246154 L4.43076923,10.1181538 C4.65230769,9.41415385 4.78276923,8.72984615 4.82707692,8.06769231 L7.93476923,8.06769231 L7.936,8.06646154 L7.936,8.06646154 Z"
+                                  id="Imported-Layers" fill="#474747" sketch:type="MSShapeGroup"></path>
+                        </g>
+                    </svg>
+                </i></a></li>
+                <li><a href="https://book.douban.com/people/xiuchundao/" target="_blank" title="豆瓣读书"><i
+                        class="icon icon-douban"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="15px" height="15px"
+                         viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <title>豆瓣读书</title>
+                        <desc>豆瓣读书</desc>
+                        <defs></defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                           sketch:type="MSPage">
+                            <path d="M0,14.53125 L0,13.125 L3.75,13.125 L2.62875,9.4096875 L1.28578125,9.4096875 L1.40625,2.8125 L13.59375,2.8125 L13.59375,9.375 L12.2751563,9.4096875 L11.25,13.125 L14.9610937,12.9801563 L15,14.53125 L0,14.53125 L0,14.53125 Z M6.09375,13.125 L8.90625,13.125 L10.1990625,9.4096875 L4.82671875,9.4096875 L6.09375,13.125 L6.09375,13.125 Z M11.25,4.6875 L3.84140625,4.655625 L3.75,7.5 L11.25,7.5 L11.25,4.6875 L11.25,4.6875 Z M0.46875,0 L14.53125,0 L14.53125,1.40625 L0.46875,1.40625 L0.46875,0 L0.46875,0 Z"
+                                  id="Shape" fill="#000000" sketch:type="MSShapeGroup"></path>
+                        </g>
+                    </svg>
+                </i></a></li>
+            </ul>
+
+            <!--<p class="txt-medium-gray">-->
+                <!--<small>-->
+                    <!--Powered by 我有绣春刀-->
+                <!--</small>-->
+            <!--</p>-->
+        </div>
+    </footer>
+
+    {% block javascript %}
+    {% endblock %}
+</body>
+</html>

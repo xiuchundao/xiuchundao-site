@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/css/default.css">
+
+    <title>{{ post.zh_title }} - 我有绣春刀</title>
+{% endblock %}
+
+{% block main %}
+
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title">
+                <a class="post-link" href="/post/{{post.en_title}}">{{post.zh_title}}<code class="highlighter-rouge">{% if post.is_top %}[置顶]{% endif %}</code></a>
+            </h2>
+            <div class="post-meta">
+                <time>{{post.time | post_datetime}}</time>
+            </div>
+            <div class="post-tags">
+                {% for post_tag in post.tags %}
+                    <a href="/tag/{{post_tag.tag.tag_name}}" class="tags-button">{{post_tag.tag.tag_name}}</a>
+                {% endfor %}
+            </div>
+        </header>
+
+        <div class="post-content">{{post.html_content | safe}}</div>
+    </article>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/lib/highlight-9.4.0.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}

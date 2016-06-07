@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block head %}
+    <title>图片列表 - 我有绣春刀</title>
+{% endblock %}
+
+{% block main %}
+
+    <div class="archive-list">
+        <div class="archive-heading">
+            <span>今天上传的图片资源</span>
+        </div>
+
+        <div class="archive-body">
+            {% for image in image_list %}
+                <a href="/attach/{{image.md5_name}}" target="_blank" class="archive-item">
+                    {{ image.time | image_datetime }}&nbsp;&nbsp;&nbsp;&nbsp;{{ image.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="/lib/jquery-2.2.4.min.js"></script>
+
+    <script>
+        (function() {
+
+            //
+            $(".archive-heading").click(function(){
+                $(this).next().toggle(300);
+                <!--$(this).parent().toggleClass('archive-group');-->
+            });
+
+        })();
+    </script>
+{% endblock %}
