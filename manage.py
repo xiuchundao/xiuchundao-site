@@ -4,14 +4,13 @@ from flask_migrate import Migrate, init, upgrade, migrate
 
 from app import create_app, db
 
-app = create_app('default')
+app = create_app('product')
 manager = Manager(app)
 x_migrate = Migrate(app, db)
 
 
 @manager.command
 def create_db():
-    """Create a database."""
     init()
     upgrade_db()
 
