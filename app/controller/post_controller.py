@@ -23,6 +23,7 @@ def index():
 
 @post_bp.route('/page/<int:page_index>')
 def page(page_index):
+    db.session.autoflush = False
     query = PostEntity.query.order_by(PostEntity.is_top.desc(), PostEntity.time.desc())
     pagination = query.paginate(page_index, per_page=8, error_out=False)
     posts = pagination.items
@@ -54,6 +55,7 @@ def page(page_index):
 
 @post_bp.route('/post/<post_title>')
 def post_detail(post_title):
+    db.session.autoflush = False
     post = PostEntity.query.filter_by(en_title=post_title).first_or_404()
     post.html_content = post.html_content.replace('&lt;!-- more --&gt;', '')
     # for post_tag in post.tags:
@@ -67,6 +69,8 @@ def post_new():
     if len(request.data):
         # 表示这是前端通过ajax发送的post请求
         json_data = json.loads(request.data)
+
+        print json_data['html_content']
 
         # 获取前端参数
         zh_title = json_data['zh_title']
