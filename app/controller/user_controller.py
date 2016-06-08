@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import json
+import hashlib
 
 from flask import Blueprint, render_template, request, jsonify, redirect
 from flask_login import login_user, logout_user, current_user
@@ -22,7 +23,8 @@ def login():
         json_data = json.loads(request.data)
 
         user = UserEntity.query.filter_by(username=json_data['username']).first()
-        if user is not None and user.password == json_data['password']:
+
+        if user is not None and user.password == hashlib.md5(json_data['password']).hexdigest():
             # 登录成功
             login_user(user)
             result = ResultModel(ResultModel.SUCCESS_CODE, ResultModel.SUCCESS_MSG, None)

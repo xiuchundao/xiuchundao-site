@@ -97,7 +97,7 @@ def post_new():
         # 插入帖子
         post = PostEntity()
         post.zh_title = zh_title
-        post.en_title = en_title
+        post.en_title = en_title.lower()
         post.md_content = md_content
         post.html_content = html_content
         post.is_top = is_top

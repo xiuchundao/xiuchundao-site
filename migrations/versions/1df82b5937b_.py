@@ -19,7 +19,7 @@ def upgrade():
     op.create_table('image',
     sa.Column('image_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=80), nullable=True),
-    sa.Column('md5_name', sa.String(length=16), nullable=True),
+    sa.Column('md5_name', sa.String(length=32), nullable=True),
     sa.Column('type', sa.String(length=40), nullable=True),
     sa.Column('data', sa.LargeBinary(), nullable=True),
     sa.Column('time', sa.DateTime(), nullable=True),
@@ -50,7 +50,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=50), nullable=True),
     sa.Column('email', sa.String(length=100), nullable=True),
-    sa.Column('password', sa.String(length=16), nullable=True),
+    sa.Column('password', sa.String(length=32), nullable=True),
     sa.PrimaryKeyConstraint('user_id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')

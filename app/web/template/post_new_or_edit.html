@@ -63,9 +63,29 @@
 
         (function() {
 
-            /** 监听标签输入框 */
-            $("#post-tag-editor-input").on("change paste keyup", function() {
+            /** 监听标签输入框的输入 */
+            $("#post-tag-editor-input").on("change paste keyup", function(event) {
+
+                // delete键
+                if ( event.which == 8 ) {
+                   event.preventDefault();
+
+                   var tag_list = $(".post-tag-editor-edit-item");
+
+                   if (tag_list){
+                       tag_list[0].remove();
+                   }
+
+                    if (tag_list.length == 0){
+                        $("#post-tag-item-container").hide();
+                    }
+
+                   return;
+                }
+
                 var tag_name = $(this).val();
+
+                // 输入空格则重置
                 if(tag_name.length == 1 && tag_name == ' '){
                     $(this).val('');
                     return;
