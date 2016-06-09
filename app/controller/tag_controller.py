@@ -2,6 +2,7 @@
 
 from flask import Blueprint, render_template
 
+from app import db
 from app.entity.PostEntity import PostEntity
 from app.entity.TagEntity import TagEntity
 from app.entity.PostTagEntity import PostTagEntity
@@ -21,6 +22,7 @@ def tag_index(tag_name):
 
 @tag_bp.route('/tag/<tag_name>/<int:page_index>')
 def tag_detail(tag_name, page_index):
+    db.session.autoflush = False
     # 先查询tag
     tag = TagEntity.query.filter_by(tag_name=tag_name).first()
 
