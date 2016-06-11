@@ -1,6 +1,9 @@
 # coding: utf-8
 from flask import Blueprint, render_template
 
+from app import db
+from app.entity.PostEntity import PostEntity
+
 
 main_bp = Blueprint('main', __name__)
 
@@ -18,4 +21,9 @@ def search():
 
 @main_bp.route('/about')
 def about():
-    return render_template('about.html')
+    db.session.autoflush = False
+    post = PostEntity.query.filter_by(en_title='about').first_or_404()
+    post.html_content = post.html_content.replace('&lt;!-- more --&gt;', '')
+    # for post_tag in post.tags:
+    #     print post_tag.tag
+    return render_template('about.html', post=post)

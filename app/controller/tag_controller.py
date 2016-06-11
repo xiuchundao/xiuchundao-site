@@ -28,7 +28,8 @@ def tag_detail(tag_name, page_index):
 
     # 根据tag_id查询出符合条件的PostTagEntity记录PTR,再查询PostEntity记录PR并对其做出筛选,
     # 筛选过程如下:PTR的post_id组成一个集合,某条PR记录的post_id是集合的一个元素,这条记录保留,否则废弃
-    query = PostEntity.query.filter(PostEntity.tags.any(PostTagEntity.tag_id == tag.tag_id))\
+    query = PostEntity.query.filter(PostEntity.en_title != 'about')\
+        .filter(PostEntity.tags.any(PostTagEntity.tag_id == tag.tag_id))\
         .order_by(PostEntity.is_top.desc(), PostEntity.time.desc())
     pagination = query.paginate(page_index, per_page=8, error_out=False)
     posts = pagination.items

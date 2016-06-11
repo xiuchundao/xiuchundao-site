@@ -24,7 +24,7 @@ def index():
 @post_bp.route('/page/<int:page_index>')
 def page(page_index):
     db.session.autoflush = False
-    query = PostEntity.query.order_by(PostEntity.is_top.desc(), PostEntity.time.desc())
+    query = PostEntity.query.filter(PostEntity.en_title != 'about').order_by(PostEntity.is_top.desc(), PostEntity.time.desc())
     pagination = query.paginate(page_index, per_page=8, error_out=False)
     posts = pagination.items
 

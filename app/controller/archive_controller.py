@@ -11,7 +11,8 @@ archive_bp = Blueprint('archive', __name__)
 
 @archive_bp.route('/archives')
 def archives():
-    post_records = PostEntity.query.order_by(PostEntity.time.desc()).all()
+    post_records = PostEntity.query.filter(PostEntity.en_title != 'about')\
+        .order_by(PostEntity.time.desc()).all()
 
     year_list = []
     archive_group_list = []
