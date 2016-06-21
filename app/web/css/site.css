@@ -114,8 +114,20 @@ ul, ol {
     list-style: none
 }
 
+ul > li{
+    padding-left: 2em;
+}
+
 pre code{
     font-family: Courier New, Menlo, Monaco;
+}
+
+.post-content code {
+    padding: .25em .5em;
+    font-size: 1.05em;
+    color: #bf616a;
+    background-color: #f9f9f9;
+    border-radius: 3px;
 }
 
 .container {
