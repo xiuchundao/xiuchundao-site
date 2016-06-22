@@ -114,7 +114,7 @@ ul, ol {
     list-style: none
 }
 
-post-content ul > li{
+.post-content ul > li{
     padding-left: 2em;
 }
 
