@@ -120,9 +120,20 @@ ul, ol {
 
 pre code{
     font-family: Courier New, Menlo, Monaco;
+    font-size: 1em;
 }
 
+code {
+    padding: .25em .5em;
+    font-size: 1.2em;
+    color: #bf616a;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+}
 
+.post-title code{
+    padding: 0;
+}
 
 .container {
     max-width: 800px;
