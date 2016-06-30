@@ -114,10 +114,6 @@ ul, ol {
     list-style: none
 }
 
-.post-content li > ul{
-    padding-left: 2em;
-}
-
 pre code{
     font-family: Courier New, Menlo, Monaco;
     font-size: 1em;
@@ -387,6 +383,28 @@ article {
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5,  .post-content h6, .post-content p {
     margin-top: .6em;
     margin-bottom: .6em;
+}
+
+.post-content li > ul, .post-content li > ol{
+    padding-left: 2em;
+}
+
+.post-content li p:not(:first-child) {
+    padding-left: 2em;
+}
+
+.post-content table {
+    border: 0px solid #ddd;
+    border-collapse:collapse;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.post-content table th, .post-content table td {
+    text-align: left;
+    border:1px solid #ddd;
+    padding: .4em .6em;
 }
 
 .post-header {
