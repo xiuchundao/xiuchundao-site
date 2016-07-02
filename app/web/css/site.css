@@ -385,7 +385,7 @@ article {
     margin-bottom: .6em;
 }
 
-.post-content li > ul, .post-content li > ol{
+.post-content li > ul, .post-content li > ol, .post-content li > pre{
     padding-left: 2em;
 }
 
