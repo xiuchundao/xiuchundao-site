@@ -115,13 +115,14 @@ ul, ol {
 }
 
 pre code{
-    font-family: Courier New, Menlo, Monaco;
+    font-family: Consolas, Courier New, Hiragino Sans GB, Microsoft Yahei;
     font-size: 1em;
 }
 
 code {
+    font-family: Hiragino Sans GB, Microsoft Yahei, Menlo, Monaco;
     padding: .25em .5em;
-    font-size: 1.2em;
+    font-size: .9em;
     color: #bf616a;
     background-color: #f9f9f9;
     border-radius: 3px;
