@@ -115,7 +115,7 @@ ul, ol {
 }
 
 pre code{
-    font-family: Consolas, Courier New, Hiragino Sans GB, Microsoft Yahei;
+    font-family: Courier New, Consolas, Hiragino Sans GB, Microsoft Yahei;
     font-size: 1em;
 }
 
