@@ -128,6 +128,15 @@ code {
     border-radius: 3px;
 }
 
+blockquote {
+    display: block;
+    color: #777;
+    padding: 0 15px;
+    margin: 0;
+    border: 5px;
+    border-left: 5px solid #ddd;
+}
+
 .post-title code{
     padding: 0;
 }
