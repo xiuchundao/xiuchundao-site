@@ -398,6 +398,7 @@ article {
 .post-content h1, .post-content h2, .post-content h3 {
     border-bottom: 1.4px solid #eee;
     padding-bottom: .4em;
+    margin-top: 1.2em;
 }
 
 .post-content li > ul, .post-content li > ol, .post-content li > pre{
