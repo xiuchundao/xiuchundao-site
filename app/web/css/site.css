@@ -141,6 +141,15 @@ blockquote {
     padding: 0;
 }
 
+.post-content li p{
+    display: inline;
+}
+
+.post-content li{
+    margin-top: .8em;
+    margin-bottom: .8em;
+}
+
 .container {
     max-width: 800px;
     margin-left: auto;
