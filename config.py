@@ -28,7 +28,7 @@ class DevelopmentConfig(BaseConfig):
 class ProductConfig(BaseConfig):
     DEBUG = False
     HOST = '127.0.0.1'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('XIUCHUNDAO_SITE_DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@127.0.0.1:3306/xiuchundao_site' #os.environ.get('XIUCHUNDAO_SITE_DATABASE_URL')
 
     def __init__(self):
         BaseConfig.__init__(self)
